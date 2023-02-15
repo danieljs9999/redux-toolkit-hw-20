@@ -4,7 +4,7 @@ import RouteTodo from "./components/todoList/RouteTodo";
 import Auth from "./components/Auth/Auth";
 import Header from "./components/Header";
 import styled from "styled-components";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -12,9 +12,9 @@ function App() {
       <Container>
         <Header />
         <Routes>
-          <Route path="/" element={<Auth />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/todo" element={<RouteTodo />} />
+          <Route path="*" element={<Navigate to="/auth" />} />
         </Routes>
       </Container>
     </Provider>
