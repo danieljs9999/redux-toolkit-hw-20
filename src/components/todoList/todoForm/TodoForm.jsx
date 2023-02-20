@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { todoActionTypes } from "../../../store/todo/todoReducer";
+import { todoAction } from "../../../store/todo/todoSlise";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
+import uuid from "react-uuid";
 
 function TodoForm() {
   const dispatch = useDispatch();
@@ -19,13 +20,20 @@ function TodoForm() {
   const addTodoHandler = (event) => {
     event.preventDefault();
 
-    dispatch({ type: todoActionTypes.ADD, payload: todosValue });
+    const todoObj = {
+      id: uuid(),
+      title: todosValue,
+      isCompleted: false,
+    };
+
+    dispatch(todoAction.add(todoObj));
 
     setTodosValue("");
   };
 
   const deeteAll = () => {
-    dispatch({ type: todoActionTypes.DELETE_ALL });
+    dispatch(todoAction.deleteAll());
+    console.log("deeteAll");
   };
 
   return (

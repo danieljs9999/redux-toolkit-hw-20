@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authActionTypes } from "../../store/auth/authReducer";
+import { authAction } from "../../store/auth/authSlise";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 
@@ -31,10 +31,7 @@ function Auth() {
       formState.email === "user@gmail.com" &&
       formState.password === "654321"
     ) {
-      dispatch({
-        type: authActionTypes.LOG_IN,
-        payload: formState.email,
-      });
+      dispatch(authAction.logIn(formState.email));
     }
     navigate("/todo");
   };

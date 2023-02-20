@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 
 function Todo() {
   const result = useSelector((state) => state.todo.result);
-
+  console.log(result);
   return (
     <Container>
       <Ul className={result.length === 0 ? "" : "backgroundColor"}>

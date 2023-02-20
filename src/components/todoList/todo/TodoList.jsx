@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { todoActionTypes } from "../../../store/todo/todoReducer";
 import { BsCheck, BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
+import { todoAction } from "../../../store/todo/todoSlise";
 
 function TodoList({ item }) {
   const dispatch = useDispatch();
@@ -14,11 +14,11 @@ function TodoList({ item }) {
   const [editValue, setEditValue] = useState("");
 
   const removeTodo = () => {
-    dispatch({ type: todoActionTypes.REMOVE, payload: item.id });
+    dispatch(todoAction.remove(item.id));
   };
 
   const toggleTodo = () => {
-    dispatch({ type: todoActionTypes.TOGGLE, payload: item.id });
+    dispatch(todoAction.toggle(item.id));
   };
 
   const editTodo = () => {
@@ -27,11 +27,11 @@ function TodoList({ item }) {
   };
 
   const saveHandler = () => {
-    dispatch({
-      type: todoActionTypes.EDIT,
+    const editObj = {
       id: item.id,
       value: editValue,
-    });
+    };
+    dispatch(todoAction.edit(editObj));
     setEditTode(false);
   };
 

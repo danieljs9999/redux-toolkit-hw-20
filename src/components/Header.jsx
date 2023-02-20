@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authActionTypes } from "../store/auth/authReducer";
+import { authAction } from "../store/auth/authSlise";
 
 const setActive = ({ isActive }) => (isActive ? "activeLink" : "noActiveLink");
 
@@ -12,7 +12,7 @@ const Header = () => {
   const isAuthorised = useSelector((state) => state.auth.isAuthOrised);
 
   const logoutHandler = () => {
-    dispatch({ type: authActionTypes.LOG_OUT });
+    dispatch(authAction.logOut());
     navigate("/auth");
   };
 
@@ -60,6 +60,7 @@ const HeaderStyle = styled.header`
     padding: 0.5rem 1.5rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     color: #2c2922;
+    border-radius: 6px;
 
     :hover {
       background-color: #ffa600;
